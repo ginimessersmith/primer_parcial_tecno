@@ -61,7 +61,7 @@ public class DSizes {
         return "se elimino con exito ";
     }
 
-    public List<String[]> list() throws SQLException {
+    public List<String[]> findAll() throws SQLException {
         List<String[]> sizes = new ArrayList<>();
         String query = "SELECT * FROM sizes";
         PreparedStatement ps = connection.connection().prepareStatement(query);
@@ -75,7 +75,7 @@ public class DSizes {
         return sizes;
     }
 
-    public String[] view(int id) throws SQLException {
+    public String[] findOne(int id) throws SQLException {
         String[] size = null;
         String query = "SELECT * FROM sizes WHERE id=?";
         PreparedStatement ps = connection.connection().prepareStatement(query);

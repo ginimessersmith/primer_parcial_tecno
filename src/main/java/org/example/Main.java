@@ -13,7 +13,7 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
         DSizes size = new DSizes();
         try {
-            String sizes[] = size.view(3);
+            String sizes[] = size.findOne(3);
             if (sizes != null) {
                 for (String string : sizes) {
                     System.out.println(string);
