@@ -31,10 +31,11 @@ public class DUsuario {
             String email,
             String password,
             int phone,
-            String address) throws SQLException {
+            String address,
+            String role) throws SQLException {
 
-        String query = "INSERT INTO users(name,email,password,phone,address) "
-                + "values(?,?,?,?,?)";
+        String query = "INSERT INTO users(name,email,password,phone,address,role) "
+                + "values(?,?,?,?,?,?)";
 
         PreparedStatement ps = connection.connection().prepareStatement(query);
 
@@ -43,6 +44,7 @@ public class DUsuario {
         ps.setString(3, password);
         ps.setInt(4, phone);
         ps.setString(5, address);
+        ps.setString(6, role);
 
         if (ps.executeUpdate() == 0) {
             System.err.println("class DUsuario.java dice:" + "ocurrio un error al insertar un usuario");

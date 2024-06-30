@@ -14,13 +14,14 @@ public class Main {
         try {
             // ! CREAR UN USUARIO
             // String message = user.guardar(
-            // "jorge",
-            // "jorge@gmail",
+            // "Carlos Laime",
+            // "carlos@gmail.com",
             // "123",
             // 75338090,
-            // "av bolivia");
-            // ! LISTA TODOS LOS USUARIO
+            // "av bolivia",
+            // "Cliente");
             // System.out.println(message);
+            // ! LISTA TODOS LOS USUARIO
             // List<String[]> message = user.listar();
             // for (String[] strings : message) {
 
@@ -34,14 +35,14 @@ public class Main {
             // System.out.println(datos);
             // }
             // ! MODIFICAR UN USUARIO
-            String userUpdate = user.modificar(
-                    3,
-                    "jorge balliviancito",
-                    "jorge@gmail.com",
-                    "123",
-                    7755,
-                    "av bolivia");
-            System.out.println(userUpdate);
+            // String userUpdate = user.modificar(
+            //         3,
+            //         "jorge balliviancito",
+            //         "jorge@gmail.com",
+            //         "123",
+            //         7755,
+            //         "av bolivia");
+            // System.out.println(userUpdate);
 
         } catch (Exception e) {
             // TODO: handle exception

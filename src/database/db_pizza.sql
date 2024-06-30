@@ -66,3 +66,5 @@ select * from pizzas;
 select * from categories;
 select * from states;
 select * from users;
+
+alter table users add column role varchar(50);
