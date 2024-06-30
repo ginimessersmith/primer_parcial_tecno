@@ -4,7 +4,8 @@ create table users(
 	email varchar(50) not null,
 	password varchar(50) not null,
 	phone int not null,
-	address varchar(50) not null
+	address varchar(50) not null, 
+	role varchar(50) not null
 );
 
 create table states(
@@ -67,4 +68,3 @@ select * from categories;
 select * from states;
 select * from users;
 
-alter table users add column role varchar(50);
