@@ -26,7 +26,12 @@ public class DPizzas {
             connection.closeConnection();
     }
 
-    public String save(String name,Double price,String imagen_url,String description, Boolean available,
+    public String save(
+        String name,
+        Double price,
+        String imagen_url,
+        String description, 
+        Boolean available,
         int id_size,int id_category) throws SQLException {
         String query = "INSERT INTO pizzas(name,price,imagen_url,description,available,id_size,id_category)" +
         "VALUES(?,?,?,?,?,?,?)";

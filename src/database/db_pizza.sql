@@ -42,8 +42,8 @@ create table pizzas(
 create table orders(
 	id serial primary key,
 	total decimal(10,2) not null,
-	created_at timestamp not null,
-	update_at timestamp not null,
+	created_at date not null,
+	update_at date not null,
 	id_payment_method int references payment_methods(id),
 	id_user int references users(id),
 	id_state int references states(id)
