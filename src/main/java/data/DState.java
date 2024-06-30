@@ -12,15 +12,16 @@ import PostgreSQL.databaseConnection;
 public class DState {
 
     private databaseConnection connection;
+    ConfigDB ConfigDb = new ConfigDB();
 
     public DState() {
         
         this.connection = new databaseConnection(
-            "postgres",
-                "235364",
-                "127.0.0.1",
-                "5432",
-                "db_pizza");
+            ConfigDb.getUser(),
+            ConfigDb.getPassword(),
+            ConfigDb.getHost(),
+            ConfigDb.getPort(),
+            ConfigDb.getDbName());
     }
 
     public void disconnect() {

@@ -12,23 +12,23 @@ import PostgreSQL.databaseConnection;
 public class DCategorie {
 
     private databaseConnection connection;
+    ConfigDB ConfigDb = new ConfigDB();
 
     public DCategorie() {
-        
+
         this.connection = new databaseConnection(
-            "postgres",
-                "235364",
-                "127.0.0.1",
-                "5432",
-                "db_pizza");
+                ConfigDb.getUser(),
+                ConfigDb.getPassword(),
+                ConfigDb.getHost(),
+                ConfigDb.getPort(),
+                ConfigDb.getDbName()
+        );
     }
 
     public void disconnect() {
         if (connection != null)
             connection.closeConnection();
     }
-
-
 
     public String save(String name) throws SQLException {
         String query = "INSERT INTO categories(name) values(?)";
@@ -71,30 +71,29 @@ public class DCategorie {
         ResultSet set = ps.executeQuery();
         while (set.next()) {
             categories.add(new String[] {
-                String.valueOf(set.getInt("id")),
-                set.getString("name"),
+                    String.valueOf(set.getInt("id")),
+                    set.getString("name"),
             });
         }
         return categories;
     }
-       
-        
-        public String[] findOne(int id) throws SQLException {
-            String[] categories = null;
-            String query = "SELECT * FROM categories WHERE id=?";
-            PreparedStatement ps = connection.connection().prepareStatement(query);
-            ps.setInt(1, id);
-            ResultSet set = ps.executeQuery();
-                if (set.next()) {
-                categories = new String[] {
+
+    public String[] findOne(int id) throws SQLException {
+        String[] categories = null;
+        String query = "SELECT * FROM categories WHERE id=?";
+        PreparedStatement ps = connection.connection().prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet set = ps.executeQuery();
+        if (set.next()) {
+            categories = new String[] {
                     String.valueOf(set.getInt("id")),
                     set.getString("name")
-                };
-            }
-            return categories;
+            };
         }
+        return categories;
+    }
 
-        public void closeConnection() {
-            connection.closeConnection();
-        }
+    public void closeConnection() {
+        connection.closeConnection();
+    }
 }

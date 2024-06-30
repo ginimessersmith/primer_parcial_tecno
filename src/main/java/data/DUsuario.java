@@ -10,14 +10,15 @@ import PostgreSQL.databaseConnection;
 
 public class DUsuario {
     public databaseConnection connection;
+    ConfigDB ConfigDb = new ConfigDB();
 
     public DUsuario() {
         this.connection = new databaseConnection(
-                "postgres",
-                "1999",
-                "localhost",
-                "5432",
-                "db_pizzeria");
+                ConfigDb.getUser(),
+                ConfigDb.getPassword(),
+                ConfigDb.getHost(),
+                ConfigDb.getPort(),
+                ConfigDb.getDbName());
     }
 
     public void disconnect() {
@@ -121,7 +122,7 @@ public class DUsuario {
                     set.getString("name"),
                     set.getString("email"),
                     set.getString("password"),
-                    String.valueOf(set.getInt("phone")),                    
+                    String.valueOf(set.getInt("phone")),
                     set.getString("address"),
 
             };

@@ -10,14 +10,15 @@ import PostgreSQL.databaseConnection;
 
 public class DSizes {
     public databaseConnection connection;
+    ConfigDB ConfigDb = new ConfigDB();
 
     public DSizes() {
         this.connection = new databaseConnection(
-                "postgres",
-                "1999",
-                "localhost",
-                "5432",
-                "db_pizzeria");
+            ConfigDb.getUser(),
+            ConfigDb.getPassword(),
+            ConfigDb.getHost(),
+            ConfigDb.getPort(),
+            ConfigDb.getDbName());
     }
 
     public void disconnect() {
