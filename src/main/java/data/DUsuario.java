@@ -14,8 +14,8 @@ public class DUsuario {
     public DUsuario() {
         this.connection = new databaseConnection(
                 "postgres",
-                "ginimessersmith123456",
-                "127.0.0.1",
+                "1999",
+                "localhost",
                 "5432",
                 "db_pizzeria");
     }

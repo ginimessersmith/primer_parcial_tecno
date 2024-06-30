@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.List;
 
+import data.DSizes;
 import data.DUsuario;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -10,8 +11,16 @@ public class Main {
     public static void main(String[] args) {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
-        DUsuario user = new DUsuario();
+        DSizes size = new DSizes();
         try {
+            String sizes[] = size.view(3);
+            if (sizes != null) {
+                for (String string : sizes) {
+                    System.out.println(string);
+                }
+            } else {
+                System.out.println("No se encontró el tamaño con el ID proporcionado.");
+            }
             // ! CREAR UN USUARIO
             // String message = user.guardar(
             // "Carlos Laime",
