@@ -5,6 +5,7 @@ import java.util.List;
 import data.DPaymentMethods;
 import data.DSizes;
 import data.DUsuario;
+import data.DCategorie;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -13,17 +14,16 @@ public class Main {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
         DSizes size = new DSizes();
-        DPaymentMethods payment = new DPaymentMethods(); 
+        DCategorie categories = new DCategorie();
         try {
-            // ! find one size
-            // String sizes[] = size.findOne(3);
-            // if (sizes != null) {
-            //     for (String string : sizes) {
-            //         System.out.println(string);
-            //     }
-            // } else {
-            //     System.out.println("No se encontró el tamaño con el ID proporcionado.");
-            // }
+        //     String sizes[] = size.findOne(3);
+        //     if (sizes != null) {
+        //         for (String string : sizes) {
+        //             System.out.println(string);
+        //         }
+        //     } else {
+        //         System.out.println("No se encontró el tamaño con el ID proporcionado.");
+        //     }
             // ! CREAR UN USUARIO
             // String message = user.guardar(
             // "Carlos Laime",
@@ -56,25 +56,46 @@ public class Main {
             //         "av bolivia");
             // System.out.println(userUpdate);
 
-            //! create payment
-            // String createPayment = payment.createPayment("online");
-            // System.out.println(createPayment);
-            //! find all payments
-            // List<String[]> allPayment = payment.findAllPayment();
-            // for (String[] payments : allPayment) {
-            //     for (String paymentsData : payments) {
-            //         System.out.println(paymentsData);
+                        // ! CREAR UN ESTADO
+            // String message = state.save("En Proceso");
+            // System.out.println(message);
+
+            // ! LISTA TODOS LOS ESTADOS
+            // List<String[]> message = state.findAll();
+            // for (String[] strings : message) {
+            //     for (String data : strings) {
+            //         System.out.println(String.valueOf(data));
             //     }
             // }
-            //! find one payment
-            // String[] onePayment = payment.findOnePayment(1);
-            // for (String dataPayment : onePayment) {
-            //     System.out.println(dataPayment);                
-            // }
-            //! update payment
-            // String updatePayment = payment.updatePaymenet(1, "PayPal");
-            // System.out.println(updatePayment);
 
+
+            // ! OBTENER UN ESTADO
+            //  String[] stateData = state.findOne(1);
+            //     for (String data : stateData) {
+            //         System.out.println(data);
+            //     }
+            
+            // ! CREAR UNA CATEGORIA
+            //  String message = categories.save("Bebidas");
+            //     System.out.println(message);
+
+            // ! LISTA TODOS LAS CATEGORIAS
+            // List<String[]> message = categories.findAll();
+            // for (String[] strings : message) {
+            //     for (String data : strings) {
+            //         System.out.println(String.valueOf(data));
+            //     }
+            // }
+
+
+            // ! OBTENER UNA CATEGORIA
+             String[] categoriesData = categories.findOne(1);
+                for (String data : categoriesData) {
+                    System.out.println(data);
+                }
+
+
+            
 
         } catch (Exception e) {
             // TODO: handle exception
