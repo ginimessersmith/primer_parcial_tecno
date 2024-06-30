@@ -1,19 +1,52 @@
 package org.example;
 
+import java.util.List;
+
+import data.DUsuario;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        DUsuario user = new DUsuario();
+        try {
+            // ! CREAR UN USUARIO
+            // String message = user.guardar(
+            // "jorge",
+            // "jorge@gmail",
+            // "123",
+            // 75338090,
+            // "av bolivia");
+            // ! LISTA TODOS LOS USUARIO
+            // System.out.println(message);
+            // List<String[]> message = user.listar();
+            // for (String[] strings : message) {
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+            // for (String data : strings) {
+            // System.out.println(String.valueOf(data));
+            // }
+            // }
+            // ! OBTENER UN USUARIO
+            // String [] userData = user.ver(3);
+            // for (String datos : userData) {
+            // System.out.println(datos);
+            // }
+            // ! MODIFICAR UN USUARIO
+            String userUpdate = user.modificar(
+                    3,
+                    "jorge balliviancito",
+                    "jorge@gmail.com",
+                    "123",
+                    7755,
+                    "av bolivia");
+            System.out.println(userUpdate);
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.err.println(e);
         }
+
     }
 }
