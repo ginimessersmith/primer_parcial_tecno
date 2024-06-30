@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.List;
 
+import data.DPaymentMethods;
 import data.DSizes;
 import data.DUsuario;
 
@@ -12,15 +13,17 @@ public class Main {
         // Press Alt+Intro with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
         DSizes size = new DSizes();
+        DPaymentMethods payment = new DPaymentMethods(); 
         try {
-            String sizes[] = size.findOne(3);
-            if (sizes != null) {
-                for (String string : sizes) {
-                    System.out.println(string);
-                }
-            } else {
-                System.out.println("No se encontró el tamaño con el ID proporcionado.");
-            }
+            // ! find one size
+            // String sizes[] = size.findOne(3);
+            // if (sizes != null) {
+            //     for (String string : sizes) {
+            //         System.out.println(string);
+            //     }
+            // } else {
+            //     System.out.println("No se encontró el tamaño con el ID proporcionado.");
+            // }
             // ! CREAR UN USUARIO
             // String message = user.guardar(
             // "Carlos Laime",
@@ -52,6 +55,26 @@ public class Main {
             //         7755,
             //         "av bolivia");
             // System.out.println(userUpdate);
+
+            //! create payment
+            // String createPayment = payment.createPayment("online");
+            // System.out.println(createPayment);
+            //! find all payments
+            // List<String[]> allPayment = payment.findAllPayment();
+            // for (String[] payments : allPayment) {
+            //     for (String paymentsData : payments) {
+            //         System.out.println(paymentsData);
+            //     }
+            // }
+            //! find one payment
+            // String[] onePayment = payment.findOnePayment(1);
+            // for (String dataPayment : onePayment) {
+            //     System.out.println(dataPayment);                
+            // }
+            //! update payment
+            // String updatePayment = payment.updatePaymenet(1, "PayPal");
+            // System.out.println(updatePayment);
+
 
         } catch (Exception e) {
             // TODO: handle exception
