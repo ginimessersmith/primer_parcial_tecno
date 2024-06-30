@@ -35,7 +35,6 @@ create table pizzas(
 	imagen_url varchar(255) not null,
 	description varchar(100) not null,
 	available boolean not null,
-	id_pizza int references pizzas(id),
 	id_size int references sizes(id),
 	id_category int references categories(id)
 );
