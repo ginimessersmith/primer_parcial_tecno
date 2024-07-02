@@ -10,11 +10,10 @@ public class ConfigDB {
     // Constructor
     ConfigDB() {
         this.user = "postgres";
-        this.password = "ginimessersmith123456";
-        this.host = "127.0.0.1";
+        this.password = "1999";
+        this.host = "localhost";
         this.port = "5432";
         this.dbName = "db_pizzeria";
-
     }
 
     // Getters
