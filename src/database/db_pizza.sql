@@ -49,10 +49,9 @@ create table orders(
 	id_state int references states(id)
 );
 
-create table orders_pizzas(
-	amount decimal(10,2) not null,
+create table orders_details(
+	amount int not null,
 	subtotal decimal(10,2) not null,
-	half boolean not null,
 	id_order int references orders(id),
 	id_pizza int references pizzas(id),
 	primary key (id_order,id_pizza)

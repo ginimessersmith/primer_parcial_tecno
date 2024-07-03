@@ -139,4 +139,18 @@ public class DPizzas {
         }
         return pizza;
     }   
+
+    public Double getPrice(int id) throws SQLException{
+        String query = "SELECT price FROM pizzas WHERE id=?";
+        try (Connection conn = connection.connection();
+        PreparedStatement ps = conn.prepareStatement(query)){
+            ps.setInt(1, id);
+            try (ResultSet set = ps.executeQuery()){
+                if (set.next()) {
+                    return set.getDouble("price");
+                }
+            }
+        }
+        return null;
+    }
 }

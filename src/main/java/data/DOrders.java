@@ -30,22 +30,30 @@ public class DOrders {
             connection.closeConnection();
     }
 
-    public String save(int total, int id_payment_method, int id_user, int id_state) throws SQLException {
-        String query = "INSERT INTO orders(total, created_at, update_at,id_payment_method,id_user,id_state) VALUES(?, ?, ?,?,?,?)";
+    public int save(Double total, int id_payment_method, int id_user, int id_state) throws SQLException {
+        int orderId = -1;
+        String query = "INSERT INTO orders(total, created_at, update_at, id_payment_method, id_user, id_state) VALUES(?, ?, ?, ?, ?, ?) RETURNING id";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         LocalDate now = LocalDate.now();
-        ps.setInt(1, total);
-        ps.setDate(2,  Date.valueOf(now)); // created_at
-        ps.setDate(3, Date.valueOf(now));// updated_at
+        ps.setDouble(1, total);
+        ps.setDate(2, Date.valueOf(now)); // created_at
+        ps.setDate(3, Date.valueOf(now)); // updated_at
         ps.setInt(4, id_payment_method);
         ps.setInt(5, id_user);
         ps.setInt(6, id_state);
-        if (ps.executeUpdate() == 0) {
-            System.err.println("class DOrders.java dice: ocurrió un error al insertar un pedido");
-            throw new SQLException();
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                orderId = rs.getInt("id");
+            }
         }
-        return "Se inserto con exito";
+        if (orderId == -1) {
+            System.err.println("class DOrders.java dice: ocurrió un error al insertar un pedido");
+            throw new SQLException("Error al insertar el pedido");
+        }
+    
+        return orderId;
     }
+    
 
     public List<String[]> findAllOrder()throws SQLException{
         List<String[]> orders = new ArrayList<>();
@@ -67,4 +75,19 @@ public class DOrders {
         
     }
 
+    public String updateOrderState(int orderId, int newStateId) throws SQLException {
+        String query = "UPDATE orders SET id_state = ? WHERE id = ?";
+        try (PreparedStatement ps = connection.connection().prepareStatement(query)) {
+            ps.setInt(1, newStateId);
+            ps.setInt(2, orderId);
+            
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                System.err.println("class DOrders.java dice: ocurrió un error al actualizar el estado de la orden");
+                return "Error al actualizar el estado";
+            }
+            return "Estado actualizado con éxito";
+        }
+    }
+    
 }
