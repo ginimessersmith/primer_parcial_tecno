@@ -20,7 +20,7 @@ public class MailVerificationThread implements Runnable{
     
     private final static int PORT_POP = 110;
     private final static String HOST = "mail.tecnoweb.org.bo";
-    private final static String USER = "grupo020sa";
+    private final static String USER = "grupo20sa";
     private final static String PASSWORD = "grup020grup020";
 
     private Socket socket;
@@ -68,7 +68,7 @@ public class MailVerificationThread implements Runnable{
                    emailEventListener.onReceiveEmailEvent(emails);
                 }
                 
-                Thread.sleep(10000);
+                Thread.sleep(15000);
                 
             } catch (IOException ex) {
                 Logger.getLogger(MailVerificationThread.class.getName()).log(Level.SEVERE, null, ex);
