@@ -91,7 +91,7 @@ public class DPaymentMethods {
         return deletePayment;
     }
 
-    public String updatePaymenet(int id, String name) throws SQLException {
+    public String updatePayment(int id, String name) throws SQLException {
         String query = "UPDATE payment_methods SET name=? WHERE id=?";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setString(1, name);
