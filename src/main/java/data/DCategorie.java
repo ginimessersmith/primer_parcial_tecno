@@ -60,7 +60,7 @@ public class DCategorie {
             System.err.println("class DCategorie.java dice:" + "La Categoria no se pudo eliminar, delete()");
             // throw new SQLException();
         }
-        return "La Caregoria se elimino con exito";
+        return "La Categoria se elimino con exito";
     }
 
     public List<String[]> findAll() throws SQLException {

@@ -8,7 +8,7 @@ public class CommandInterpreter {
     private static final Map<String, String[]> COMMANDS = new HashMap<>();
 
     static {
-        COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll"});
         COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll"});
         COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll"});
@@ -62,6 +62,12 @@ public class CommandInterpreter {
                     return HandleCategories.save(params);
                 }else if(command.equals("update")){
                     return HandleCategories.update(params);
+                }else if(command.equals("delete")){
+                    return HandleCategories.delete(params);
+                }else if(command.equals("findAll")){
+                    return HandleCategories.findAll();
+                }else if(command.equals("findOne")){
+                    return HandleCategories.findOne(params);
                 }
             case "orders":
                 return "handleOrders";
