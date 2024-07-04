@@ -71,12 +71,46 @@ public class CommandInterpreter {
                 }
             case "orders":
                 return "handleOrders";
+
             case "sizes":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleSizes.save(params);
+                } else if(command.equals("update")){
+                    return HandleSizes.update(params);
+                } else if(command.equals("delete")){
+                    return HandleSizes.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleSizes.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleSizes.findAll();
+                }
+        
             case "states":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleStates.save(params);
+                } else if(command.equals("update")){
+                    return HandleStates.update(params);
+                } else if(command.equals("delete")){
+                    return HandleStates.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleStates.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleStates.findAll();
+                }
+
             case "usuarios":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleUsuarios.save(params);
+                } else if(command.equals("update")){
+                    return HandleUsuarios.update(params);
+                } else if(command.equals("delete")){
+                    return HandleUsuarios.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleUsuarios.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleUsuarios.findAll();
+                }
+                 
             case "paymentMethods":
                 return "handleOrders";
             case "pizzas":

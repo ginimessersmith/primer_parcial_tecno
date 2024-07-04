@@ -36,7 +36,7 @@ public class DUsuario {
             String role) throws SQLException {
 
         String query = "INSERT INTO users(name,email,password,phone,address,role) "
-                + "values(?,?,?,?,?,?)";
+                + "values(?,?,?,?,?,?,?)";
 
         PreparedStatement ps = connection.connection().prepareStatement(query);
 
@@ -56,9 +56,9 @@ public class DUsuario {
     }
 
     public String update(int id, String name, String email, String password,
-            int phone, String address) throws SQLException {
+            int phone, String address, String role) throws SQLException {
 
-        String query = "UPDATE users SET name=?, email=?,password=?, phone=?, address=? WHERE id=?";
+        String query = "UPDATE users SET name=?, email=?,password=?, phone=?, address=?, role=?, WHERE id=?";
 
         PreparedStatement ps = connection.connection().prepareStatement(query);
 
@@ -67,7 +67,9 @@ public class DUsuario {
         ps.setString(3, password);
         ps.setInt(4, phone);
         ps.setString(5, address);
-        ps.setInt(6, id);
+        ps.setString(6, role);
+        ps.setInt(7, id);
+        
 
         if (ps.executeUpdate() == 0) {
             System.err.println("class DUsuario.java dice:" + "El usuario no se pudo actualizar");
@@ -103,6 +105,7 @@ public class DUsuario {
                     set.getString("password"),
                     String.valueOf(set.getInt("phone")),
                     set.getString("address"),
+                    set.getString("role")
 
             });
         }
@@ -124,6 +127,7 @@ public class DUsuario {
                     set.getString("password"),
                     String.valueOf(set.getInt("phone")),
                     set.getString("address"),
+                    set.getString("role")
 
             };
         }
