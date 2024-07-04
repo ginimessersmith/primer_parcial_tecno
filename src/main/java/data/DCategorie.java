@@ -34,10 +34,10 @@ public class DCategorie {
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setString(1, name);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DCategorie.java dice:" + "ocurrio un error al insertar una categoria");
+            System.err.println("class DCategorie.java dice:" + "La Categoria no se pudo insertar");
             throw new SQLException();
         }
-        return "se inserto con exito";
+        return "La Categoria se inserto con exito";
     }
 
     public String update(int id, String name) throws SQLException {
@@ -46,10 +46,10 @@ public class DCategorie {
         ps.setString(1, name);
         ps.setInt(2, id);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DCategorie.java dice:" + "ocurrio un error al modificar una categoria");
+            System.err.println("class DCategorie.java dice:" + "La Categoria no se pudo modificar");
             // throw new SQLException();
         }
-        return "se modifico con exito";
+        return "La Categoria se modifico con exito";
     }
 
     public String delete(int id) throws SQLException {
@@ -57,10 +57,10 @@ public class DCategorie {
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setInt(1, id);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DCategorie.java dice:" + "ocurrio un error al eliminar una categoria");
+            System.err.println("class DCategorie.java dice:" + "La Categoria no se pudo eliminar, delete()");
             // throw new SQLException();
         }
-        return "se elimino con exito";
+        return "La Caregoria se elimino con exito";
     }
 
     public List<String[]> findAll() throws SQLException {

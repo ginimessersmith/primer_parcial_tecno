@@ -18,7 +18,7 @@ public class BCategorie {
             return dCategorie.save(name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al guardar la categoría: " + e.getMessage();
+            return "La categoria no se pudo guardar:" + e.getMessage();
         }
     }
 
@@ -28,7 +28,7 @@ public class BCategorie {
             return dCategorie.update(id, name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al modificar la categoría: " + e.getMessage();
+            return "La categoria no se pudo actualizar:" + e.getMessage();
         }
     }
 
@@ -38,11 +38,12 @@ public class BCategorie {
             return dCategorie.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al eliminar la categoría: " + e.getMessage();
+            return "La categoria no se pudo eliminar:" + e.getMessage();
         }
     }
 
    
+
     public List<String[]> findAll() {
         try {
             return dCategorie.findAll();

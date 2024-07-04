@@ -32,10 +32,10 @@ public class DSizes {
         ps.setString(1, name);
 
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DSizes.java dice:" + "ocurrio un error al insertar un tamaño");
+            System.err.println("class DSizes.java dice:" + "El tamaño no se pudo insertar");
             throw new SQLException();
         }
-        return "Se inserto con exito";
+        return "El Tamaño se inserto con exito";
     }
 
     public String update(int id, String name) throws SQLException {
@@ -44,10 +44,10 @@ public class DSizes {
         ps.setInt(2, id);
         ps.setString(1, name);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DSizes.java dice:" + "ocurrio un error al modificar un tamaño");
-            return "error al actualizar";
+            System.err.println("class DSizes.java dice:" + "El tamaño no se pudo actualizar");
+            return "El Tamaño no se pudo actualizar";
         }
-        return "se actualizo con exito";
+        return "El Tamaño se actualizo con exito";
     }
 
     public String delete(int id) throws SQLException {
@@ -55,11 +55,11 @@ public class DSizes {
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setInt(1, id);
         if (ps.executeUpdate() == 0) {
-            System.err.println("Class DSizes.java dice: "
-                    + "Ocurrió un error al eliminar un usuario, delete()");
-            return "no se pudo eliminar ";
+            System.err.println("Class DSizes.java dice:"
+                    + "El tamaño no se pudo eliminar, delete()");
+            return "El Tamaño no se pudo eliminar ";
         }
-        return "se elimino con exito ";
+        return "El Tamaño se elimino con exito ";
     }
 
     public List<String[]> findAll() throws SQLException {

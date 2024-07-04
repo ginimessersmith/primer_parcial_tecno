@@ -26,28 +26,28 @@ public class BOrders {
             Double total = pizzaPrice * pizzasQuantity;
             int orderId = dOrders.save(total, id_payment_method, id_user, orderState);
             dOrdersDetails.save(pizzasQuantity, pizzaPrice, orderId, id_pizza);
-            return "Orden ingresada con éxito";
+            return "El pedido se guardó correctamente";
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Ocurrión un error al procesar el pedido: " + e.getMessage();
+            return "El pedido no se pudo guardar:" + e.getMessage();
         }
     }
 
-    public List<String[]> findAllOrders() {
+    public List<String[]> findAll() {
         try {
-            return dOrders.findAllOrder();
+            return dOrders.findAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public String updateOrderState(int orderId, int newStateId) {
+    public String update(int orderId, int newStateId) {
         try {
-            return dOrders.updateOrderState(orderId, newStateId);
+            return dOrders.update(orderId, newStateId);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Ocurrió un error al cambiar el estado de la orden: " + e.getMessage();
+            return "El pedido no se pudo actualizar:" + e.getMessage();
         }
     }
 }

@@ -17,7 +17,7 @@ public class BState {
             return dState.save(name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al guardar el estado: " + e.getMessage();
+            return "El Estado no se pudo guardar:" + e.getMessage();
         }
     }
 
@@ -27,7 +27,7 @@ public class BState {
             return dState.update(id, name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al modificar el estado: " + e.getMessage();
+            return "El Estado no se pudo actualizar: " + e.getMessage();
         }
     }
 
@@ -37,7 +37,7 @@ public class BState {
             return dState.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al eliminar el estado: " + e.getMessage();
+            return "El Estado no se pudo eliminar: " + e.getMessage();
         }
     }
 

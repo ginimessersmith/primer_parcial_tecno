@@ -13,22 +13,22 @@ public class BPaymentMethods {
     }
 
     
-    public String createPayment(String name) {
+    public String save(String name) {
         try {
-            return dPaymentMethods.createPayment(name);
+            return dPaymentMethods.save(name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al guardar el método de pago: " + e.getMessage();
+            return "El Método de pago no se pudo guardar:" + e.getMessage();
         }
     }
 
     
-    public String updatePayment(int id, String name) {
+    public String update(int id, String name) {
         try {
-            return dPaymentMethods.updatePayment(id, name);
+            return dPaymentMethods.update(id, name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al actualizar el método de pago: " + e.getMessage();
+            return "El Método de pago no se pudo actualizar:" + e.getMessage();
         }
     }
 
@@ -38,14 +38,14 @@ public class BPaymentMethods {
             return dPaymentMethods.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al eliminar el método de pago: " + e.getMessage();
+            return "El Método de pago no se pudo eliminar:" + e.getMessage();
         }
     }
 
    
-    public List<String[]> findAllPayments() {
+    public List<String[]> findAll() {
         try {
-            return dPaymentMethods.findAllPayment();
+            return dPaymentMethods.findAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -53,9 +53,9 @@ public class BPaymentMethods {
     }
 
    
-    public String[] findOnePayment(int id) {
+    public String[] findOnePay(int id) {
         try {
-            return dPaymentMethods.findOnePayment(id);
+            return dPaymentMethods.findOne(id);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

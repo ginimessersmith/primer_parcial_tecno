@@ -30,9 +30,9 @@ public class DOrdersDetails {
         ps.setInt(3, id_order);
         ps.setInt(4, id_pizza);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DOrdersDetails.java dice:" + "ocurrio un error al insertar un detalle");
+            System.err.println("class DOrdersDetails.java dice:" + "El Detalle no se pudo insertar");
             throw new SQLException();
         }
-        return "Se inserto con exito";
+        return "El Detalle se inserto con exito";
     }
 }

@@ -27,7 +27,7 @@ public class DUsuario {
     }
 
     // id, name, email, password, phone, address
-    public String guardar(
+    public String save(
             String name,
             String email,
             String password,
@@ -48,14 +48,14 @@ public class DUsuario {
         ps.setString(6, role);
 
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DUsuario.java dice:" + "ocurrio un error al insertar un usuario");
+            System.err.println("class DUsuario.java dice:" + "El usuario no se pudo insertar");
             throw new SQLException();
         }
 
-        return "se inserto con exito";
+        return "El usuario se inserto con exito";
     }
 
-    public String modificar(int id, String name, String email, String password,
+    public String update(int id, String name, String email, String password,
             int phone, String address) throws SQLException {
 
         String query = "UPDATE users SET name=?, email=?,password=?, phone=?, address=? WHERE id=?";
@@ -70,27 +70,27 @@ public class DUsuario {
         ps.setInt(6, id);
 
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DUsuario.java dice:" + "ocurrio un error al modificar un usuario");
-            return "error al actualizar";
+            System.err.println("class DUsuario.java dice:" + "El usuario no se pudo actualizar");
+            return "El usuario no se pudo actualizar";
             // throw new SQLException();
         }
-        return "se actualizo con exito";
+        return "El usuario se actualizo con exito";
     }
 
-    public String eliminar(int id) throws SQLException {
+    public String delete(int id) throws SQLException {
         String query = "DELETE FROM users WHERE id=?";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setInt(1, id);
         if (ps.executeUpdate() == 0) {
             System.err.println("Class DUsuario.java dice: "
-                    + "Ocurrió un error al eliminar un usuario, eliminar()");
-            return "no se pudo eliminar ";
+                    + "El usuario no se pudo eliminar, delete()");
+            return "El usuario no se pudo eliminar";
             // throw new SQLException();
         }
-        return "se elimino con exito ";
+        return "El usuario se elimino con exito";
     }
 
-    public List<String[]> listar() throws SQLException {
+    public List<String[]> findAll() throws SQLException {
         List<String[]> usuarios = new ArrayList<>();
         String query = "SELECT * FROM users";
         PreparedStatement ps = connection.connection().prepareStatement(query);
@@ -109,7 +109,7 @@ public class DUsuario {
         return usuarios;
     }
 
-    public String[] ver(int id) throws SQLException {
+    public String[] findOne(int id) throws SQLException {
         String[] usuario = null;
         String query = "SELECT  * FROM users WHERE id=?";
         PreparedStatement ps = connection.connection().prepareStatement(query);

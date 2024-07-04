@@ -29,22 +29,21 @@ public class DPaymentMethods {
             connection.closeConnection();
     }
 
-    public String createPayment(
-            String name) throws SQLException {
+    public String save(String name) throws SQLException {
         String query = "INSERT INTO payment_methods(name) "
                 + "values(?)";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setString(1, name);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DPayment.java dice:" + "ocurrio un error al insertar");
-            return "error al crear";
+            System.err.println("class DPayment.java dice:" + "El Metodo de Pago no se pudo insertar");
+            return "El Metodo de Pago no se pudo insertar";
             // throw new SQLException();
         }
 
-        return "se inserto con exito";
+        return "El Metodo de Pago se inserto con exito";
     }
 
-    public String[] findOnePayment(int id) throws SQLException {
+    public String[] findOne(int id) throws SQLException {
 
         String[] payment = null;
         String query = "SELECT  * FROM payment_methods WHERE id=?";
@@ -62,7 +61,7 @@ public class DPaymentMethods {
 
     }
 
-    public List<String[]> findAllPayment() throws SQLException {
+    public List<String[]> findAll() throws SQLException {
         List<String[]> allPayments = new ArrayList<>();
         String query = "SELECT * FROM payment_methods";
         PreparedStatement ps = connection.connection().prepareStatement(query);
@@ -79,30 +78,30 @@ public class DPaymentMethods {
 
     public String delete(int id) throws SQLException {
         String query = "DELETE FROM payment_methods WHERE id=?";
-        String deletePayment = "eliminado con exito";
+        String deletePayment = "El Metodo de Pago se elimino con exito";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setInt(1, id);
         if (ps.executeUpdate() == 0) {
             System.err.println("Class DPayment.java dice: "
-                    + "Ocurrió un error, eliminar()");
-            return "no se pudo eliminar ";
+                    + "El Metodo de Pago no se pudo eliminar, delete()");
+            return "El Metodo de Pago no se pudo eliminar ";
             // throw new SQLException();
         }
         return deletePayment;
     }
 
-    public String updatePayment(int id, String name) throws SQLException {
+    public String update(int id, String name) throws SQLException {
         String query = "UPDATE payment_methods SET name=? WHERE id=?";
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setString(1, name);
         ps.setInt(2, id);
 
         if (ps.executeUpdate() == 0) {
-            System.out.println("error al actualizar");
-            return "erro al actualizar un payment";
+            System.out.println("El Metodo de Pago no se pudo actualizar");
+            return "El Metodo de Pago no se pudo actualizar";
         }
 
-        return "se actualizo con exito";
+        return "El Metodo de Pago se actualizo con exito";
     }
 
 }

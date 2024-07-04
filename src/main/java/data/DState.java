@@ -33,10 +33,10 @@ public class DState {
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setString(1, name);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DState.java dice:" + "ocurrio un error al insertar un estado");
+            System.err.println("class DState.java dice:" + "El Estado no se pudo insertar");
             throw new SQLException();
         }
-        return "se inserto con exito";
+        return "El Estado se inserto con exito";
     }
 
     public String update(int id, String name) throws SQLException {
@@ -45,10 +45,10 @@ public class DState {
         ps.setString(1, name);
         ps.setInt(2, id);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DState.java dice:" + "ocurrio un error al modificar un estado");
+            System.err.println("class DState.java dice:" + "El Estado no se pudo modificar");
             // throw new SQLException();
         }
-        return "se modifico con exito";
+        return "El Estado se modifico con exito";
     }
 
     public String delete(int id) throws SQLException {
@@ -56,11 +56,11 @@ public class DState {
         PreparedStatement ps = connection.connection().prepareStatement(query);
         ps.setInt(1, id);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DState.java dice:" + "ocurrio un error al eliminar un estado");
+            System.err.println("class DState.java dice:" + "ocurrio un error al eliminar un estado, delete()");
             // throw new SQLException();
-            return "no se pudo eliminar";
+            return "El Estado no se pudo eliminar";
         }
-        return "se elimino con exito";
+        return "El Estado se elimino con exito";
     }
 
 

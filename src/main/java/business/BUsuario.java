@@ -12,45 +12,45 @@ public class BUsuario {
         this.dUsuario = new DUsuario();
     }
 
-    public String guardar(String name, String email, String password, int phone, String address, String role) {
+    public String save(String name, String email, String password, int phone, String address, String role) {
         try {
-            return dUsuario.guardar(name, email, password, phone, address, role);
+            return dUsuario.save(name, email, password, phone, address, role);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al guardar el usuario: " + e.getMessage();
+            return "El Usuario no se pudo guardar: " + e.getMessage();
         }
     }
 
-    public String modificar(int id, String name, String email, String password, int phone, String address) {
+    public String update(int id, String name, String email, String password, int phone, String address) {
         try {
-            return dUsuario.modificar(id, name, email, password, phone, address);
+            return dUsuario.update(id, name, email, password, phone, address);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al modificar el usuario: " + e.getMessage();
+            return "El Usuario no se pudo actualizar: " + e.getMessage();
         }
     }
 
-    public String eliminar(int id) {
+    public String delete(int id) {
         try {
-            return dUsuario.eliminar(id);
+            return dUsuario.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error al eliminar el usuario: " + e.getMessage();
+            return "El Usuario no se pudo eliminar: " + e.getMessage();
         }
     }
 
-    public List<String[]> listar() {
+    public List<String[]> findAll() {
         try {
-            return dUsuario.listar();
+            return dUsuario.findAll();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public String[] ver(int id) {
+    public String[] findOne(int id) {
         try {
-            return dUsuario.ver(id);
+            return dUsuario.findOne(id);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

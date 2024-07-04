@@ -11,14 +11,16 @@ import PostgreSQL.databaseConnection;
 
 public class DPizzas {
     public databaseConnection connection;
+    ConfigDB ConfigDb = new ConfigDB();
 
     public DPizzas() {
         this.connection = new databaseConnection(
-                "postgres",
-                "1999",
-                "localhost",
-                "5432",
-                "db_pizzeria");
+                ConfigDb.getUser(),
+                ConfigDb.getPassword(),
+                ConfigDb.getHost(),
+                ConfigDb.getPort(),
+                ConfigDb.getDbName()
+        );
     }
 
     public void disconnect() {
@@ -44,10 +46,10 @@ public class DPizzas {
         ps.setInt(6, id_size);
         ps.setInt(7, id_category);
         if (ps.executeUpdate() == 0) {
-            System.err.println("class DSizes.java dice:" + "ocurrio un error al insertar un tamaño");
+            System.err.println("class DSizes.java dice:" + "La Pizza no se pudo insertar");
             throw new SQLException();
         }
-        return "Se inserto con exito";
+        return "La Pizza Se inserto con exito";
     }
 
     public String update(int id, String name, Double price, String imagen_url, String description, Boolean available,
@@ -68,9 +70,9 @@ public class DPizzas {
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
                 System.err.println("class DSizes.java dice: ocurrió un error al actualizar la pizza");
-                return "error al actualizar";
+                return "La Pizza no se pudo actualizar";
             }
-            return "se actualizo con exito";
+            return "La Pizza se actualizo con exito";
         }
     }
 
@@ -84,10 +86,10 @@ public class DPizzas {
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
                 System.err.println("Class DSizes.java dice: ocurrió un error al eliminar una pizza, delete()");
-                return "no se pudo eliminar";
+                return "La Pizza no se pudo eliminar";
             }
             
-            return "se elimino con exito";
+            return "La Pizza se elimino con exito";
         }
     }
 

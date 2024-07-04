@@ -17,7 +17,7 @@ public class BSizes {
             return dSizes.save(name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error saving size: " + e.getMessage();
+            return "El Tamaño no se pudo guardar:" + e.getMessage();
         }
     }
 
@@ -26,7 +26,7 @@ public class BSizes {
             return dSizes.update(id, name);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error updating size: " + e.getMessage();
+            return "El Tamaño no se pudo actualizar:" + e.getMessage();
         }
     }
 
@@ -35,7 +35,7 @@ public class BSizes {
             return dSizes.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error deleting size: " + e.getMessage();
+            return "El Tamaño no se pudo eliminar:" + e.getMessage();
         }
     }
 

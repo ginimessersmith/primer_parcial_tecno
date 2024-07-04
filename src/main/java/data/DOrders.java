@@ -47,15 +47,15 @@ public class DOrders {
             }
         }
         if (orderId == -1) {
-            System.err.println("class DOrders.java dice: ocurrió un error al insertar un pedido");
-            throw new SQLException("Error al insertar el pedido");
+            System.err.println("class DOrders.java dice: El pedido no se pudo insertar");
+            throw new SQLException("El pedido no se pudo insertar");
         }
     
         return orderId;
     }
     
 
-    public List<String[]> findAllOrder()throws SQLException{
+    public List<String[]> findAll()throws SQLException{
         List<String[]> orders = new ArrayList<>();
         String query = "SELECT * FROM orders;";
         PreparedStatement ps = connection.connection().prepareStatement(query);
@@ -75,7 +75,7 @@ public class DOrders {
         
     }
 
-    public String updateOrderState(int orderId, int newStateId) throws SQLException {
+    public String update(int orderId, int newStateId) throws SQLException {
         String query = "UPDATE orders SET id_state = ? WHERE id = ?";
         try (PreparedStatement ps = connection.connection().prepareStatement(query)) {
             ps.setInt(1, newStateId);
@@ -83,10 +83,10 @@ public class DOrders {
             
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
-                System.err.println("class DOrders.java dice: ocurrió un error al actualizar el estado de la orden");
-                return "Error al actualizar el estado";
+                System.err.println("class DOrders.java dice: El estado de la orden no se pudo actualizar");
+                return "El estado de la orden no se pudo actualizar";
             }
-            return "Estado actualizado con éxito";
+            return "El Estado actualizado con éxito";
         }
     }
     

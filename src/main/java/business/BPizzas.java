@@ -17,7 +17,7 @@ public class BPizzas {
             return dPizzas.save(name, price, imagen_url, description, available, id_size, id_category);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error saving pizza: " + e.getMessage();
+            return "La Pizza no se pudo guardar:" + e.getMessage();
         }
     }
 
@@ -26,7 +26,7 @@ public class BPizzas {
             return dPizzas.update(id, name, price, imagen_url, description, available, id_size, id_category);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error updating pizza: " + e.getMessage();
+            return "La Pizza no se pudo actualizar:" + e.getMessage();
         }
     }
 
@@ -35,7 +35,7 @@ public class BPizzas {
             return dPizzas.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error deleting pizza: " + e.getMessage();
+            return "La Pizza no se pudo eliminar:" + e.getMessage();
         }
     }
 
