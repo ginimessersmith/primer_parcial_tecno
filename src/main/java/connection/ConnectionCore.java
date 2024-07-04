@@ -4,13 +4,18 @@ import java.util.List;
 
 import command.CommandInterpreter;
 import communication.MailVerificationThread;
+import communication.SendEmail;
 import interfaces.IEmailEventListener;
 import utils.Email;
 
 public class ConnectionCore {
+    public SendEmail sendEmail = new SendEmail();
+
     public static void main(String[] args) {
         MailVerificationThread mail = new MailVerificationThread();
+        ConnectionCore core = new ConnectionCore();
         mail.setEmailEventListener(new IEmailEventListener() {
+
             @Override
             public void onReceiveEmailEvent(List<Email> emails){
                 for(Email email : emails){
@@ -18,7 +23,8 @@ public class ConnectionCore {
                     String emailFrom = email.getFrom();
                     String emailSubject = email.getSubject();
                     String response = CommandInterpreter.interpret(emailSubject);
-                    System.out.println(response);
+                    System.out.println(response);                    
+                    core.sendEmail.sendEmail(emailFrom,response);
                 }
             }
         });

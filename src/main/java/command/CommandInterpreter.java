@@ -51,7 +51,21 @@ public class CommandInterpreter {
             return "Comando '" + command + "' no reconocido para el caso de uso '" + useCase + "'. Usa 'HELP' para ver la lista de comandos.";
         }
         
-        return "Caso de uso: " + useCase + ", Comando: " + command + ", Parámetros: " + params;
+        //Empezar el switch
+        switch (useCase) {
+            case "categories":
+                if(command.equals("save")){
+                    return HandleCategories.save(params);
+                }else if(command.equals("update")){
+                    return HandleCategories.update(params);
+                }
+            case "orders":
+                return "handleOrders";
+                //return handleOrders(command, params);
+            default:
+                return "No se reconoce " + useCase + "como un caso de uso";
+        }
+        //return "Caso de uso: " + useCase + ", Comando: " + command + ", Parámetros: " + params;
     }
 
     private static String getHelpMessage() {
