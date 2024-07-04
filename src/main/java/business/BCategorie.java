@@ -15,6 +15,8 @@ public class BCategorie {
     
     public String save(String name) {
         try {
+            System.out.println("BCATEGORIES");
+            System.out.println(name);
             return dCategorie.save(name);
         } catch (SQLException e) {
             e.printStackTrace();

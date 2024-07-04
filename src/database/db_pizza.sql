@@ -66,3 +66,21 @@ select * from categories;
 select * from states;
 select * from users;
 
+-- INSERT INTO users(name, email, password, phone, address, role)
+-- VALUES ('gino baptista', 'ginobaptista@gmail.com', '123456', '75338090', 'Av litoral', 'cliente');
+
+-- INSERT INTO users(name, email, password, phone, address, role)
+-- VALUES ('gino baptista', 'ginobaptista@gmail.com', '123456', '75338090', 'Av litoral', 'cliente');
+
+insert into pizzas (name, price, imagen_url, description, available, id_size, id_category)
+values ('peperoni', 12, 'url', 'con 4 porciones', true, 1, 4);
+
+insert into categories(name) values('pizzas familiares');
+insert into sizes(name) values('Mediana');
+insert into payment_methods(name) values('Pay Pal');
+
+insert into orders (total,id_payment_method,)
+
+insert into states(name) values('entregado');
+
+

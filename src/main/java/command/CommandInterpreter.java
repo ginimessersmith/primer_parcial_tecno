@@ -64,7 +64,16 @@ public class CommandInterpreter {
                     return HandleCategories.update(params);
                 }
             case "orders":
-                return "handleOrders";
+                if(command.equals("save")){
+                    System.out.println("PARAMS SAVE ORDERS");
+                    System.out.println(params);
+                    return HandleOrders.save(params);
+                }else if (command.equals("update")) {
+                    return HandleOrders.update(params);
+                }else if (command.equals("findAll")) {
+                    System.out.println("find all orders execute");
+                    return HandleOrders.findAll();
+                }
             case "sizes":
                 return "handleOrders";
             case "states":
@@ -72,7 +81,17 @@ public class CommandInterpreter {
             case "usuarios":
                 return "handleOrders";
             case "paymentMethods":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandlePaymentMethods.save(params);
+                }else if(command.equals("update")){
+                    return HandlePaymentMethods.update(params);
+                }else if(command.equals("delete")){
+                    return HandlePaymentMethods.delete(params);
+                }else if(command.equals("findOne")){
+                    return HandlePaymentMethods.findOne(params);
+                }else if(command.equals("findAll")){
+                    return HandlePaymentMethods.findAll();
+                }
             case "pizzas":
                 return "handleOrders";
             default:
