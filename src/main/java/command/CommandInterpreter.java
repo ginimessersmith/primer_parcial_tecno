@@ -8,17 +8,17 @@ public class CommandInterpreter {
     private static final Map<String, String[]> COMMANDS = new HashMap<>();
 
     static {
-        COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll", "delete"});
     }
 
     public static String interpret(String subject) {
-        subject = subject.replaceAll("[^a-zA-Z0-9\\s\\(\\),]", "");
+        subject = subject.replaceAll("[^a-zA-Z0-9\\s\\(\\),./@]", "");
         // Recortar espacios en blanco innecesarios fuera de los paréntesis
         subject = subject.replaceAll("\\s+", " ").trim();
 
@@ -62,6 +62,12 @@ public class CommandInterpreter {
                     return HandleCategories.save(params);
                 }else if(command.equals("update")){
                     return HandleCategories.update(params);
+                }else if(command.equals("delete")){
+                    return HandleCategories.delete(params);
+                }else if(command.equals("findAll")){
+                    return HandleCategories.findAll();
+                }else if(command.equals("findOne")){
+                    return HandleCategories.findOne(params);
                 }
             case "orders":
                 if(command.equals("save")){
@@ -74,12 +80,46 @@ public class CommandInterpreter {
                     System.out.println("find all orders execute");
                     return HandleOrders.findAll();
                 }
+
             case "sizes":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleSizes.save(params);
+                } else if(command.equals("update")){
+                    return HandleSizes.update(params);
+                } else if(command.equals("delete")){
+                    return HandleSizes.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleSizes.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleSizes.findAll();
+                }
+        
             case "states":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleStates.save(params);
+                } else if(command.equals("update")){
+                    return HandleStates.update(params);
+                } else if(command.equals("delete")){
+                    return HandleStates.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleStates.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleStates.findAll();
+                }
+
             case "usuarios":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandleUsuarios.save(params);
+                } else if(command.equals("update")){
+                    return HandleUsuarios.update(params);
+                } else if(command.equals("delete")){
+                    return HandleUsuarios.delete(params);
+                } else if(command.equals("findOne")){
+                    return HandleUsuarios.findOne(params);
+                } else if(command.equals("findAll")){
+                    return HandleUsuarios.findAll();
+                }
+                 
             case "paymentMethods":
                 if(command.equals("save")){
                     return HandlePaymentMethods.save(params);
@@ -93,7 +133,17 @@ public class CommandInterpreter {
                     return HandlePaymentMethods.findAll();
                 }
             case "pizzas":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandlePizzas.save(params);
+                }else if(command.equals("update")){
+                    return HandlePizzas.update(params);
+                }else if(command.equals("delete")){
+                    return HandlePizzas.delete(params);
+                }else if(command.equals("findAll")){
+                    return HandlePizzas.findAll();
+                }else if(command.equals("findOne")){
+                    return HandlePizzas.findOne(params);
+                }
             default:
                 return "No se reconoce " + useCase + "como un caso de uso";
         }
