@@ -12,8 +12,9 @@ public class BPizzas {
         this.dPizzas = new DPizzas();
     }
 
-    public String save(String name, Double price, String imagen_url, String description, Boolean available, int id_size, int id_category) {
+    public String save(String name, Double price, String imagen_url, String description, int id_size, int id_category) {
         try {
+            boolean available = true;
             return dPizzas.save(name, price, imagen_url, description, available, id_size, id_category);
         } catch (SQLException e) {
             e.printStackTrace();

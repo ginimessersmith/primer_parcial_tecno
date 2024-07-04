@@ -9,16 +9,16 @@ public class CommandInterpreter {
 
     static {
         COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll", "delete"});
-        COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll", "delete"});
     }
 
     public static String interpret(String subject) {
-        subject = subject.replaceAll("[^a-zA-Z0-9\\s\\(\\),]", "");
+        subject = subject.replaceAll("[^a-zA-Z0-9\\s\\(\\),./@]", "");
         // Recortar espacios en blanco innecesarios fuera de los paréntesis
         subject = subject.replaceAll("\\s+", " ").trim();
 
@@ -80,7 +80,17 @@ public class CommandInterpreter {
             case "paymentMethods":
                 return "handleOrders";
             case "pizzas":
-                return "handleOrders";
+                if(command.equals("save")){
+                    return HandlePizzas.save(params);
+                }else if(command.equals("update")){
+                    return HandlePizzas.update(params);
+                }else if(command.equals("delete")){
+                    return HandlePizzas.delete(params);
+                }else if(command.equals("findAll")){
+                    return HandlePizzas.findAll();
+                }else if(command.equals("findOne")){
+                    return HandlePizzas.findOne(params);
+                }
             default:
                 return "No se reconoce " + useCase + "como un caso de uso";
         }
