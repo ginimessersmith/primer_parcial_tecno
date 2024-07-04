@@ -13,7 +13,7 @@ public class CommandInterpreter {
         COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll", "delete"});
-        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("usuarios", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll", "delete"});
     }
 
