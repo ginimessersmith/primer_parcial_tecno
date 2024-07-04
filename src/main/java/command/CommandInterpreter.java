@@ -8,12 +8,13 @@ public class CommandInterpreter {
     private static final Map<String, String[]> COMMANDS = new HashMap<>();
 
     static {
-        COMMANDS.put("categories", new String[]{"save", "update", "findone", "findall"});
-        COMMANDS.put("orders", new String[]{"save", "update", "findone", "findall"});
-        COMMANDS.put("paymentmethods", new String[]{"save", "update", "findone", "findall"});
-        COMMANDS.put("pizzas", new String[]{"save", "update", "findone", "findall"});
-        COMMANDS.put("sizes", new String[]{"save", "update", "findone", "findall"});
-        COMMANDS.put("usuario", new String[]{"save", "update", "findone", "findall"});
+        COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll"});
     }
 
     public static String interpret(String subject) {
@@ -64,11 +65,19 @@ public class CommandInterpreter {
                 }
             case "orders":
                 return "handleOrders";
-                //return handleOrders(command, params);
+            case "sizes":
+                return "handleOrders";
+            case "states":
+                return "handleOrders";
+            case "usuarios":
+                return "handleOrders";
+            case "paymentMethods":
+                return "handleOrders";
+            case "pizzas":
+                return "handleOrders";
             default:
                 return "No se reconoce " + useCase + "como un caso de uso";
         }
-        //return "Caso de uso: " + useCase + ", Comando: " + command + ", Parámetros: " + params;
     }
 
     private static String getHelpMessage() {
