@@ -57,7 +57,7 @@ create table orders_details(
 	primary key (id_order,id_pizza)
 );
 
-select * from orders_pizzas;
+select * from orders_details;
 select * from orders;
 select * from sizes;
 select * from payment_methods;
