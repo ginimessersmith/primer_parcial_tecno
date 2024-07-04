@@ -1,13 +1,13 @@
 package command;
 
 import business.BCategorie;
-
+                                            
 public class HandleCategories {
     public static String save(String params){
 
         String response = "";
 
-        if(isWord(params)){
+        if(params instanceof String){
             BCategorie categories = new BCategorie();
             response = categories.save(params);
         }else{
@@ -32,11 +32,6 @@ public class HandleCategories {
             + "(los parámetros recibidos no cumplen con el formato que necesita el método save)";
             return response;
         }
-    }
-
-    public static boolean isWord(String input) {
-        String regex = "^[a-zA-Z]+$";
-        return input.matches(regex);
     }
 
     public static boolean isValidFormat(String input) {

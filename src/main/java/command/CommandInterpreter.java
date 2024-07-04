@@ -17,8 +17,11 @@ public class CommandInterpreter {
     }
 
     public static String interpret(String subject) {
-        subject = subject.replaceAll("[^a-z0-9\\s\\(\\),]", "").trim();
+        subject = subject.replaceAll("[^a-zA-Z0-9\\s\\(\\),]", "");
+        // Recortar espacios en blanco innecesarios fuera de los paréntesis
+        subject = subject.replaceAll("\\s+", " ").trim();
 
+        System.out.println("Subject luego de formatear: " + subject);
         if (subject.equals("help")) {
             return getHelpMessage();
         }
@@ -52,7 +55,7 @@ public class CommandInterpreter {
         }
         
         //Empezar el switch
-        switch (useCase) {
+        switch (useCase.toLowerCase()) {
             case "categories":
                 if(command.equals("save")){
                     return HandleCategories.save(params);
