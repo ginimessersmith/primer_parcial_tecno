@@ -17,7 +17,7 @@ public class CommandInterpreter {
     }
 
     public static String interpret(String subject) {
-        subject = subject.toLowerCase().replaceAll("[^a-z0-9\\s\\(\\),]", "").trim();
+        subject = subject.replaceAll("[^a-z0-9\\s\\(\\),]", "").trim();
 
         if (subject.equals("help")) {
             return getHelpMessage();
