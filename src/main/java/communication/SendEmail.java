@@ -21,7 +21,7 @@ public class SendEmail {
         // props.put("mail.smtp.host", "smtp.gmail.com");
         // props.put("mail.smtp.port", "587");
 
-        props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.auth", "false");
         // props.put("mail.smtp.starttls.enable", "true");
         props.setProperty("mail.smtp.tls.enable", "true");
         props.setProperty("mail.smtp.host", "mail.tecnoweb.org.bo");
