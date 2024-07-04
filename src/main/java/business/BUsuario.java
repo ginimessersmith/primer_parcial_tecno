@@ -21,9 +21,9 @@ public class BUsuario {
         }
     }
 
-    public String update(int id, String name, String email, String password, int phone, String address) {
+    public String update(int id, String name, String email, String password, int phone, String address, String role) {
         try {
-            return dUsuario.update(id, name, email, password, phone, address);
+            return dUsuario.update(id, name, email, password, phone, address, role);
         } catch (SQLException e) {
             e.printStackTrace();
             return "El Usuario no se pudo actualizar: " + e.getMessage();

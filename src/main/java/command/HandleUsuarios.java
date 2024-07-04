@@ -8,81 +8,98 @@ public class HandleUsuarios {
 
    
     public static String save(String params) {
-        if (isValidFormat(params)) {
+        // Dividir la cadena de entrada en parámetros basándose en comas seguidas de cero o más espacios
+        String[] partsOfParams = params.split(",\\s*");
+    
+        // Asegurar que todos los parámetros necesarios están presentes
+        if (partsOfParams.length == 6) {
             try {
-                String[] parts = params.split(", ");
-                String name = parts[0];
-                String email = parts[1];
-                String password = parts[2];
-                int phone = Integer.parseInt(parts[3]); // Convertir el string a entero
-                String address = parts[4];
-                String role = parts[5];
-
-                BUsuario usuario = new BUsuario();
-                return usuario.save(name, email, password, phone, address, role);
+                String name = partsOfParams[0];
+                String email = partsOfParams[1];
+                String password = partsOfParams[2];
+                int phone = Integer.parseInt(partsOfParams[3]); // Esto puede lanzar NumberFormatException si no es un número
+                String address = partsOfParams[4];
+                String role = partsOfParams[5];
+    
+                BUsuario usuarios = new BUsuario();
+                return usuarios.save(name, email, password, phone, address, role);
             } catch (NumberFormatException e) {
-                return "HandleUsuarios.java dice: Ocurrió un error al convertir el teléfono, asegúrate de que es un número válido.";
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return "HandleUsuarios.java dice: Ocurrió un error con el número de argumentos proporcionados.";
+                return "Error: El teléfono debe ser un número válido. " + e.getMessage();
+            } catch (Exception e) {
+                return "Error al procesar los parámetros: " + e.getMessage();
             }
         } else {
-            return "HandleUsuarios.java dice: Ocurrió un error al ejecutar el método save "
-                   + "(el parámetro no contiene los argumentos necesarios o está en formato incorrecto)";
+            return "HandleUsuarios.java dice: Ocurrió un error al ejecutar el método save " +
+                   "(Número de parámetros incorrecto. Esperados: 6, Recibidos: " + partsOfParams.length + ")";
         }
     }
+    
+    
+    
 
    
     public static String update(String params) {
+        // Primero, validar los parámetros
         if (!isValidFormat(params)) {
-            return "Error: formato incorrecto o datos incompletos para actualizar.";
+            return "Error: Formato incorrecto o datos incompletos para actualizar.";
         }
+    
+        // Dividir los parámetros asegurando que sean exactamente 7
+        String[] parts = params.split(",\\s*");
+        if (parts.length != 7) {
+            return "Error: Número incorrecto de argumentos proporcionados. Esperados: 7, recibidos: " + parts.length;
+        }
+    
         try {
-            String[] parts = params.split(", ");
-            int id = Integer.parseInt(parts[0]);
-            String name = parts[1];
-            String email = parts[2];
-            String password = parts[3];
-            int phone = Integer.parseInt(parts[4]);
-            String address = parts[5];
+            int id = Integer.parseInt(parts[0]);  // ID del usuario
+            String name = parts[1];  // Nombre del usuario
+            String email = parts[2];  // Email del usuario
+            String password = parts[3];  // Contraseña del usuario
+            int phone = Integer.parseInt(parts[4]);  // Teléfono del usuario
+            String address = parts[5];  // Dirección del usuario
+            String role = parts[6];  // Rol del usuario
     
             BUsuario usuario = new BUsuario();
-            return usuario.update(id, name, email, password, phone, address);
+            return usuario.update(id, name, email, password, phone, address, role);
         } catch (NumberFormatException e) {
-            return "Error: fallo al convertir el ID o teléfono a número.";
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return "Error: ocurrió un error con el número de argumentos proporcionados.";
+            return "Error: Fallo al convertir el ID o teléfono a número. " + e.getMessage();
+        } catch (Exception e) {
+            return "Error general al actualizar el usuario: " + e.getMessage();
         }
     }
+    
 
     
-    public static String delete(String id) {
+    public static String delete(String idStr) {
         try {
-            int userId = Integer.parseInt(id); // Convertir el ID de String a int
+            int userId = Integer.parseInt(idStr.trim());  // Convertir el ID de String a int
             BUsuario usuario = new BUsuario();
-            return usuario.delete(userId); // Llamar al método delete de BUsuario
+            return usuario.delete(userId);  // Llamar al método delete de BUsuario
         } catch (NumberFormatException e) {
-            return "HandleUsuarios.java dice: El ID debe ser numérico y válido.";
+            return "HandleUsuarios.java dice: El ID debe ser numérico y válido. " + e.getMessage();
         }
     }
+    
 
     
-    public static String findOne(String id) {
+    public static String findOne(String idStr) {
         try {
-            int userId = Integer.parseInt(id);
+            int userId = Integer.parseInt(idStr.trim());  // Convertir el ID de String a int
             BUsuario usuario = new BUsuario();
             String[] userDetails = usuario.findOne(userId);
             if (userDetails == null || userDetails.length == 0) {
-                return "No se encontró el usuario con ID: " + id;
+                return "No se encontró el usuario con ID: " + idStr;
             }
-            return String.join(", ", userDetails);  // Concatenando la información del usuario
+            return String.join(", ", userDetails);  // Concatenar la información del usuario
         } catch (NumberFormatException e) {
-            return "Error: el ID debe ser numérico.";
+            return "Error: el ID debe ser numérico. " + e.getMessage();
         }
     }
     
+    
 
  
-     public static String findAll() {
+    public static String findAll() {
         BUsuario usuario = new BUsuario();
         try {
             List<String[]> users = usuario.findAll();
@@ -91,24 +108,21 @@ public class HandleUsuarios {
             }
             StringBuilder sb = new StringBuilder();
             for (String[] user : users) {
-                sb.append("Usuario: ");
-                for (String detail : user) {
-                    sb.append(detail).append(" ");
-                }
-                sb.append("\n"); // Añade una nueva línea entre usuarios
+                sb.append("Usuario: ").append(String.join(", ", user)).append("\n");
             }
             return sb.toString();
         } catch (Exception e) {
             return "Error al recuperar usuarios: " + e.getMessage();
         }
     }
+    
 
     
 
     public static boolean isValidFormat(String input) {
-        // Asume formato: ID, name, email, password, phone, address, role
-        // Ejemplo: 1, Juan Perez, juanperez@example.com, pass123, 555666777, Calle 123, Admin
-        String regex = "^\\d+, [a-zA-Z ]+, [a-zA-Z0-9@.]+, \\w+, \\d+, [a-zA-Z0-9 ]+, \\w+$";
+        String regex = "^\\d+, [a-zA-Z \\-']+?, [a-zA-Z0-9@.]+, \\w+, \\d+, [a-zA-Z0-9, \\-']+?, \\w+$";
         return input.matches(regex);
     }
+    
+    
 }

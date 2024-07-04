@@ -12,9 +12,9 @@ public class CommandInterpreter {
         COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll"});
         COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll"});
         COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("usuario", new String[]{"save", "update", "findOne", "findAll"});
-        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll"});
+        COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("usuarios", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("states", new String[]{"save", "update", "findOne", "findAll", "delete"});
     }
 
     public static String interpret(String subject) {
