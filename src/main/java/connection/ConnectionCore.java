@@ -21,6 +21,7 @@ public class ConnectionCore {
                 for(Email email : emails){
                     System.out.println("Este es el email" + email);
                     String emailFrom = email.getFrom();
+                    System.out.println("el from es:" + email.getFrom());
                     String emailSubject = email.getSubject();
                     String response = CommandInterpreter.interpret(emailSubject);
                     System.out.println(response);                    

@@ -4,6 +4,7 @@ public class Extractor {
     private static String GMAIL = "d=gmail";
     private static String HOTMAIL = "d=hotmail";
     private static String YAHOO = "d=yahoo";
+    private static String UAGRM = "d=uagrm";
     
     public static Email getEmail(String plain_text) {
         return new Email(getFrom(plain_text), getSubject(plain_text));
@@ -31,30 +32,24 @@ public class Extractor {
             to = getToFromHotmail(plain_text);
         } else if (plain_text.contains(YAHOO)) {
             to = getToFromYahoo(plain_text);
+        } else if (plain_text.contains(UAGRM)) {
+            to = getToFromUagrm(plain_text);
         }
         return to;
     }
     
     private static String getSubject(String plain_text) {
         String search = "Subject: ";
-        int i = plain_text.indexOf(search);
-        if (i == -1) {
+        int index_begin = plain_text.indexOf(search);
+        if (index_begin == -1) {
             return "No Subject";
         }
-        i += search.length();
-        String end_string = "";
-        if (plain_text.contains(GMAIL)) {
-            end_string = "To:";
-        } else if (plain_text.contains(HOTMAIL)) {
-            end_string = "Thread-Topic";
-        } else if (plain_text.contains(YAHOO)) {
-            end_string = "MIME-Version:";
+        index_begin += search.length();
+        int index_end = plain_text.indexOf("\n", index_begin);
+        if (index_end == -1) {
+            return plain_text.substring(index_begin).trim();
         }
-        int e = plain_text.indexOf(end_string, i);
-        if (e == -1) {
-            return "No Subject";
-        }
-        return plain_text.substring(i, e).trim();
+        return plain_text.substring(index_begin, index_end).trim();
     }
     
     private static String getToFromGmail(String plain_text) {
@@ -77,6 +72,11 @@ public class Extractor {
             return "Unknown";
         }
         return plain_text.substring(i + 1, e);
+    }
+    
+    private static String getToFromUagrm(String plain_text) {
+        String aux = getToCommon(plain_text);
+        return aux.substring(1, aux.length() - 1);
     }
     
     private static String getToCommon(String plain_text) {
