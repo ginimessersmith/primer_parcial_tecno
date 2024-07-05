@@ -6,26 +6,27 @@ import java.util.Properties;
 
 public class SendEmail {
 
-    // private final String mail = "ginobaptista@gmail.com";
-    // private final String password = "dqii suby uhmu arbt";
+    private final String username = "ginobaptista@gmail.com";
+    private final String password = "dqii suby uhmu arbt";
     private final static String PROTOCOL = "smtp";
-    private final String mail = "grupo20sa@tecnoweb.org.bo";
-    private final String username = "grupo20sa";
-    private final String password = "grup020grup020";
+    // private final String mail = "grupo20sa@tecnoweb.org.bo";
+    // private final String username = "grupo20sa";
+    // private final String password = "grup020grup020";
 
     public void sendEmail(String to, String response) {
         Properties props = new Properties();
         props.put("mail.transport.protocol", PROTOCOL);
-        // props.put("mail.smtp.auth", "true");
-        // props.put("mail.smtp.starttls.enable", "true");
-        // props.put("mail.smtp.host", "smtp.gmail.com");
-        // props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        // props.put("mail.smtp.ssl.enable", "true");
+        props.setProperty("mail.smtp.ssl.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "465");
 
-        props.setProperty("mail.smtp.auth", "false");
-        // props.put("mail.smtp.starttls.enable", "true");
-        props.setProperty("mail.smtp.tls.enable", "true");
-        props.setProperty("mail.smtp.host", "mail.tecnoweb.org.bo");
-        props.setProperty("mail.smtp.port", "25");
+        // props.setProperty("mail.smtp.auth", "false");
+        
+        // props.setProperty("mail.smtp.tls.enable", "true");
+        // props.setProperty("mail.smtp.host", "mail.tecnoweb.org.bo");
+        // props.setProperty("mail.smtp.port", "25");
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
@@ -37,7 +38,7 @@ public class SendEmail {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(mail));
+            message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Your Subject Here");
             message.setText(response);
