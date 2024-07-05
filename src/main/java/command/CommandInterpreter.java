@@ -158,6 +158,8 @@ public class CommandInterpreter {
         String helpMessage = "**************** SISTEMA VIA MAIL PIZZERÍA ALEJANDRINI **************** \r\n" + //
                         "\r\n" + //
                         "        Utiliza 'help' para visualizar la lista de comandos \r\n" + //
+                        "\r\n" + //
+                        "        La estructura para enviar comandos es la siguiente: casoDeUso metodo (parametros, del , metodo) \r\n" + //
                         "        A continuación la lista de los casos de uso y los comandos disponibles:\r\n" + //
                         "\r\n" + //
                         "        CU: pizzas\r\n" + //
