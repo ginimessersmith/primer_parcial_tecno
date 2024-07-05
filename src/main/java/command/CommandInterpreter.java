@@ -174,7 +174,7 @@ public class CommandInterpreter {
                         "        - findAll (all) -- escribir tal cual\r\n" + //
                         "        - delete (idToDelete)\r\n" + //
                         "\r\n" + //
-                        "        CU: paymentMethods\r\n" + //
+                        "        CU: paymentmethods\r\n" + //
                         "        - save (name)\r\n" + //
                         "        - update (id, newName)\r\n" + //
                         "        - findOne (id)\r\n" + //
