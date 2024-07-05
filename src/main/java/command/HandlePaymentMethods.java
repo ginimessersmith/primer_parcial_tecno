@@ -23,15 +23,26 @@ public class HandlePaymentMethods {
     public static String update(String params) {
         BPaymentMethods payment = new BPaymentMethods();
         String res = "";
-        if (isValidFormat(params)) {
+        // if (isValidFormat(params)) {
+        // String[] parts = params.split(", ");
+        // int id = Integer.parseInt(parts[0]);
+        // String newName = parts[1];
+        // res = payment.update(id, newName);
+        // } else {
+        // res = "Handle Payment method: error en el metodo update, params: " + params;
+        // }
+        try {
             String[] parts = params.split(", ");
             int id = Integer.parseInt(parts[0]);
             String newName = parts[1];
             res = payment.update(id, newName);
-        } else {
+            return res;
+        } catch (Exception e) {
+            // TODO: handle exception
             res = "Handle Payment method: error en el metodo update, params: " + params;
+            return res;
         }
-        return res;
+
     }
 
     public static String delete(String params) {
@@ -60,13 +71,13 @@ public class HandlePaymentMethods {
         return res;
     }
 
-    public static String findAll(){
+    public static String findAll() {
         BPaymentMethods payment = new BPaymentMethods();
         List<String[]> payments = payment.findAll();
-        if(payments != null){
+        if (payments != null) {
             String concatenatedPayments = concatenatePayment(payments);
             return concatenatedPayments;
-        }else{
+        } else {
             return "Categorias vacías";
         }
     }
@@ -74,7 +85,7 @@ public class HandlePaymentMethods {
     public static String concatenatePayment(List<String[]> payments) {
         StringBuilder concatenated = new StringBuilder();
         String delimiter = ", ";
-    
+
         for (String[] payment : payments) {
             for (String paymentData : payment) {
                 if (concatenated.length() > 0) {
@@ -86,8 +97,13 @@ public class HandlePaymentMethods {
         return concatenated.toString();
     }
 
+    // public static boolean isValidFormat(String input) {
+    // String regex = "^\\d+(, \\d+)*$";
+    // return input.matches(regex);
+    // }
+
     public static boolean isValidFormat(String input) {
-        String regex = "^\\d+(, \\d+)*$";
+        String regex = "^\\d+, [a-zA-Z]+$";
         return input.matches(regex);
     }
 }
