@@ -86,7 +86,7 @@ public class DOrders {
                 System.err.println("class DOrders.java dice: El estado de la orden no se pudo actualizar");
                 return "El estado de la orden no se pudo actualizar";
             }
-            return "El Estado actualizado con éxito";
+            return "El Estado de la orden actualizado con éxito";
         }
     }
     
