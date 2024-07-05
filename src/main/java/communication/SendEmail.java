@@ -16,14 +16,15 @@ public class SendEmail {
     public void sendEmail(String to, String response) {
         Properties props = new Properties();
         props.put("mail.transport.protocol", PROTOCOL);
+        // ?------Google:
         props.put("mail.smtp.auth", "true");
         // props.put("mail.smtp.ssl.enable", "true");
         props.setProperty("mail.smtp.ssl.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "465");
-
+        // ?------Tecnoweb:
         // props.setProperty("mail.smtp.auth", "false");
-        
+
         // props.setProperty("mail.smtp.tls.enable", "true");
         // props.setProperty("mail.smtp.host", "mail.tecnoweb.org.bo");
         // props.setProperty("mail.smtp.port", "25");
@@ -40,7 +41,7 @@ public class SendEmail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("Your Subject Here");
+            message.setSubject("Mensaje de Pizzeria Alejandrini");
             message.setText(response);
 
             // Envío del mensaje
