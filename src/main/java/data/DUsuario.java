@@ -36,7 +36,7 @@ public class DUsuario {
             String role) throws SQLException {
 
         String query = "INSERT INTO users(name,email,password,phone,address,role) "
-                + "values(?,?,?,?,?,?,?)";
+                + "values(?,?,?,?,?,?)";
 
         PreparedStatement ps = connection.connection().prepareStatement(query);
 

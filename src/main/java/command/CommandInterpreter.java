@@ -150,14 +150,60 @@ public class CommandInterpreter {
     }
 
     private static String getHelpMessage() {
-        StringBuilder helpMessage = new StringBuilder("Lista de casos de uso y comandos:\n\n");
-        for (Map.Entry<String, String[]> entry : COMMANDS.entrySet()) {
-            helpMessage.append(entry.getKey()).append(":\n");
-            for (String command : entry.getValue()) {
-                helpMessage.append("  - ").append(command).append("\n");
-            }
-            helpMessage.append("\n");
-        }
+        String helpMessage = "**************** SISTEMA VIA MAIL PIZZERÍA ALEJANDRINI **************** \r\n" + //
+                        "\r\n" + //
+                        "        Utiliza 'help' para visualizar la lista de comandos \r\n" + //
+                        "\r\n" + //
+                        "        La estructura para enviar comandos es la siguiente: casoDeUso metodo (parametros, del , metodo) \r\n" + //
+                        "        A continuación la lista de los casos de uso y los comandos disponibles:\r\n" + //
+                        "\r\n" + //
+                        "        CU: pizzas\r\n" + //
+                        "        - save (name, price, image/url.jpg, descripcion sin comas ni acentos, idSize, idCategory)\r\n" + //
+                        "        - update (id, name, price, image/url.jpg, descripcion sin comas ni acentos, boolean true o false, idSize, idCategory)\r\n" + //
+                        "        - findOne (idToFind)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (idToDelete)\r\n" + //
+                        "\r\n" + //
+                        "        CU: sizes\r\n" + //
+                        "        - save (size)\r\n" + //
+                        "        - update (id, sizeUpdate)\r\n" + //
+                        "        - findOne (idToFind)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (idToDelete)\r\n" + //
+                        "\r\n" + //
+                        "        CU: paymentmethods\r\n" + //
+                        "        - save (name)\r\n" + //
+                        "        - update (id, newName)\r\n" + //
+                        "        - findOne (id)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (id)\r\n" + //
+                        "\r\n" + //
+                        "        CU: orders\r\n" + //
+                        "        - save (id_user, id_pizza, pizzasQuantity, id_payment_method)\r\n" + //
+                        "        - update (idOrder,newStateId) \r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "\r\n" + //
+                        "        CU: categories\r\n" + //
+                        "        - save (categorie)\r\n" + //
+                        "        - update (id, categoryUpdate)\r\n" + //
+                        "        - findOne (idToFind)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (idToDelete)\r\n" + //
+                        "\r\n" + //
+                        "        CU: usuarios\r\n" + //
+                        "        - save (name, email, password, phone, direccion sin comas ni acentos, role)\r\n" + //
+                        "        - update (id, name, email, password, phone, direccion sin comas ni acentos, role)\r\n" + //
+                        "        - findOne (userId)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (userId)\r\n" + //
+                        "\r\n" + //
+                        "        CU: states\r\n" + //
+                        "        - save (estado)\r\n" + //
+                        "        - update (id, stateUpdate)\r\n" + //
+                        "        - findOne (id)\r\n" + //
+                        "        - findAll (all) -- escribir tal cual\r\n" + //
+                        "        - delete (id)\r\n" + //
+                        "        ";
         return helpMessage.toString();
     }
 }
