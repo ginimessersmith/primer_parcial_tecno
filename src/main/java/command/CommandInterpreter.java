@@ -10,7 +10,7 @@ public class CommandInterpreter {
     static {
         COMMANDS.put("categories", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("orders", new String[]{"save", "update", "findOne", "findAll", "delete"});
-        COMMANDS.put("paymentMethods", new String[]{"save", "update", "findOne", "findAll", "delete"});
+        COMMANDS.put("paymentmethods", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("pizzas", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("sizes", new String[]{"save", "update", "findOne", "findAll", "delete"});
         COMMANDS.put("usuarios", new String[]{"save", "update", "findOne", "findAll", "delete"});
@@ -120,7 +120,7 @@ public class CommandInterpreter {
                     return HandleUsuarios.findAll();
                 }
                  
-            case "paymentMethods":
+            case "paymentmethods":
                 if(command.equals("save")){
                     return HandlePaymentMethods.save(params);
                 }else if(command.equals("update")){
